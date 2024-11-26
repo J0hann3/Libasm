@@ -1,9 +1,9 @@
 NAME = libasm.a
 AS = nasm
-ASFLAGS = -felf64 -g -s -O0 -Wall
+ASFLAGS = -felf64 -g -s
 
 CC = cc
-CFLAGS = 
+CFLAGS = -g -Wall -Werror -Wextra
 
 SRCS_DIR = srcs/
 SRCS_LIST = ft_strlen.s\

@@ -8,8 +8,8 @@ ft_strcpy:
 	.loop:
 		mov byte dl, [rsi]
 		mov byte [rdi], dl
-		add rsi, 8
-		add rdi, 8
+		add rsi, 1
+		add rdi, 1
 		cmp byte [rdi], 0
 		jne .loop
 	.end:
