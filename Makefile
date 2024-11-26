@@ -33,7 +33,7 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.s Makefile
 	$(AS) $(ASFLAGS) $< -o $@
 
 test: $(NAME)
-	$(CC) $(CFLAGS) $(TESTS) $(TEST_UNIT_SRC) $(TEST_UNIT_INC) -L. -lasm -o $(TEST_NAME);
+	$(CC) $(CFLAGS) -DUNITY_INCLUDE_EXEC_TIME -DUNITY_OUTPUT_COLOR $(TESTS) $(TEST_UNIT_SRC) $(TEST_UNIT_INC) -L. -lasm -o $(TEST_NAME);
 	./$(TEST_NAME)
 
 clean:
