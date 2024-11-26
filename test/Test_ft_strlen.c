@@ -1,14 +1,7 @@
 #include "unity.h"
 #include <string.h>
-#include <signal.h>
-#include <stdbool.h>
-#include <setjmp.h>
 
 size_t ft_strlen(const char *s);
-
-void setUp(){}
-
-void tearDown(){}
 
 void test_strlen_empty_string(void)
 {

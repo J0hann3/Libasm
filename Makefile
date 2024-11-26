@@ -6,16 +6,21 @@ CC = cc
 CFLAGS = 
 
 SRCS_DIR = srcs/
-SRCS_LIST = ft_strlen.s
+SRCS_LIST = ft_strlen.s\
+			ft_strcpy.s
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
 OBJS_DIR = objs/
 OBJS_LIST = $(SRCS_LIST:.s=.o)
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_LIST))
 
+UNIT_TEST_URL = https://github.com/ThrowTheSwitch/Unity.git
+UNIT_TEST = Unity/
+
 TESTS_DIR = test/
 TESTS_LIST = Test_main.c\
-			Test_ft_strlen.c
+			Test_ft_strlen.c\
+			Test_ft_strcpy.c
 TESTS = $(addprefix $(TESTS_DIR), $(TESTS_LIST))
 TEST_UNIT_SRC = ./Unity/src/unity.c
 TEST_UNIT_INC = -I./Unity/src/
@@ -32,14 +37,27 @@ $(OBJS_DIR):
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.s Makefile
 	$(AS) $(ASFLAGS) $< -o $@
 
-test: $(NAME)
+$(UNIT_TEST):
+	@echo "~-~-~-~-~ COMPILING UNIT_TEST ~-~-~-~-~"
+	@echo "   - Fetching sources..."
+	@if [ ! -d "$(UNIT_TEST)" ]; then \
+		git clone $(UNIT_TEST_URL) $(UNIT_TEST); \
+	else \
+		cd $(UNIT_TEST) && git pull; \
+	fi
+	@echo "~ DONE ~\n"
+
+test: $(NAME) $(UNIT_TEST)
 	$(CC) $(CFLAGS) -DUNITY_INCLUDE_EXEC_TIME -DUNITY_OUTPUT_COLOR $(TESTS) $(TEST_UNIT_SRC) $(TEST_UNIT_INC) -L. -lasm -o $(TEST_NAME);
 	./$(TEST_NAME)
 
 clean:
 	rm -rf $(OBJS_DIR)
 
-fclean: clean
+clean_unittest:
+	rm -rf $(UNIT_TEST)
+
+fclean: clean clean_unittest
 	rm -rf $(NAME)
 	rm -rf $(TEST_NAME)
 
