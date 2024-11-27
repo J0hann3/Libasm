@@ -12,5 +12,8 @@ int main(void)
 
 	printf("\033[32m\nRunning Test: 'ft_strcpy'\n\033[0m");
 	test_ft_strcpy();
+
+	printf("\033[32m\nRunning Test: 'ft_strcmp'\n\033[0m");
+	test_ft_strcmp();
 	return UNITY_END();
 }

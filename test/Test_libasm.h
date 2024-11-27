@@ -5,5 +5,6 @@
 
 int test_ft_strlen(void);
 int test_ft_strcpy(void);
+void test_ft_strcmp(void);
 
 #endif

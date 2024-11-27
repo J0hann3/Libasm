@@ -1,10 +1,6 @@
 #include "unity.h"
 #include <string.h>
 
-#define EMPTY_STRING	""
-#define STRING_SHORTER	"hello"
-#define STRING_SHORT	"bonjour"
-
 char *ft_strcpy(char *dest, const char *src);
 
 void verify_strcpy_behavior(const char *src, size_t dest_size) {

@@ -7,7 +7,9 @@ CFLAGS = -g -Wall -Werror -Wextra
 
 SRCS_DIR = srcs/
 SRCS_LIST = ft_strlen.s\
-			ft_strcpy.s
+			ft_strcpy.s\
+			ft_strcmp.s
+
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
 OBJS_DIR = objs/
@@ -20,7 +22,9 @@ UNIT_TEST = Unity/
 TESTS_DIR = test/
 TESTS_LIST = Test_main.c\
 			Test_ft_strlen.c\
-			Test_ft_strcpy.c
+			Test_ft_strcpy.c\
+			Test_ft_strcmp.c
+
 TESTS = $(addprefix $(TESTS_DIR), $(TESTS_LIST))
 TEST_UNIT_SRC = ./Unity/src/unity.c
 TEST_UNIT_INC = -I./Unity/src/
