@@ -51,6 +51,10 @@ test: $(NAME) $(UNIT_TEST)
 	$(CC) $(CFLAGS) -DUNITY_INCLUDE_EXEC_TIME -DUNITY_OUTPUT_COLOR $(TESTS) $(TEST_UNIT_SRC) $(TEST_UNIT_INC) -L. -lasm -o $(TEST_NAME);
 	./$(TEST_NAME)
 
+valgrind_test: $(NAME) $(UNIT_TEST)
+	$(CC) $(CFLAGS) -DUNITY_INCLUDE_EXEC_TIME -DUNITY_OUTPUT_COLOR $(TESTS) $(TEST_UNIT_SRC) $(TEST_UNIT_INC) -L. -lasm -o $(TEST_NAME);
+	valgrind --trace-children=yes ./$(TEST_NAME)
+
 clean:
 	rm -rf $(OBJS_DIR)
 
