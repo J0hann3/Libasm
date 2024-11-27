@@ -123,11 +123,22 @@ cd Libasm
 | `rip` | | | | | Instruction Pointer |
 | `eflags` | | | | | Status/condition code bits |
 
+### Syscall
+
+| system call number | 1st parameter | 2nd parameter | 3rd parameter | 4th parameter | 5th parameter | 6th parameter | result |
+| ------------------|----------------|----------------|---------------|-------------|---------------|-------|-------------|
+| `rax` | `rdi` | `rsi` | `rdx` | `r10` | `r8` | `r9` | `rax`|
+
+All registers, except `rcx` and `r11` (and the return value, `rax`), are preserved during the system call with syscall. 
+
 ### Intel syntax
 
 `mov destination, source`
+
 `mov qword ptr[rax],rbx`
+
 `call qword ptr[rbx+rsi*4-0xe8]`
+
 
 ### Unit test
 - TDD:
