@@ -18,5 +18,8 @@ int main(void)
 
 	printf("\033[32m\nRunning Test: 'ft_write'\n\033[0m");
 	test_ft_write();
+
+	printf("\033[32m\nRunning Test: 'ft_read'\n\033[0m");
+	test_ft_read();
 	return UNITY_END();
 }

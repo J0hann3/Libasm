@@ -9,7 +9,8 @@ SRCS_DIR = srcs/
 SRCS_LIST = ft_strlen.s\
 			ft_strcpy.s\
 			ft_strcmp.s\
-			ft_write.s
+			ft_write.s\
+			ft_read.s
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
@@ -27,7 +28,8 @@ TESTS_LIST = Test_main.c\
 			Test_ft_strlen.c\
 			Test_ft_strcpy.c\
 			Test_ft_strcmp.c\
-			Test_ft_write.c
+			Test_ft_write.c\
+			Test_ft_read.c
 
 TESTS = $(addprefix $(TESTS_DIR), $(TESTS_LIST))
 TEST_UNIT_SRC = ./Unity/src/unity.c
