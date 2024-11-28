@@ -81,6 +81,27 @@ void test_ft_read_more_than_all_file()
 	verify_read_behavior("coucou", 40);
 }
 
+void test_ft_read_invalid_fd()
+{
+	char buffer[1024] = {0};
+
+	errno = 0;
+	ssize_t std_res = read(-1, buffer, 1024);
+	int std_errno = errno;
+
+	errno = 0;
+	ssize_t res = ft_read(-1, buffer, 1024);
+	int new_errno = errno;
+
+	TEST_ASSERT_EQUAL_INT(std_res, res);
+	TEST_ASSERT_EQUAL_INT(std_errno, new_errno);
+}
+
+void test_ft_read_negative_size()
+{
+	verify_read_behavior("coucou", -5);
+}
+
 void test_ft_read(void)
 {
 	RUN_TEST(test_ft_read_size_zero);
@@ -90,5 +111,7 @@ void test_ft_read(void)
 	RUN_TEST(test_ft_read_long_string);
 	RUN_TEST(test_ft_read_all_file);
 	RUN_TEST(test_ft_read_more_than_all_file);
+	RUN_TEST(test_ft_read_invalid_fd);
+	RUN_TEST(test_ft_read_negative_size);
 	remove(FILENAME);
 }
