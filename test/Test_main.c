@@ -21,5 +21,8 @@ int main(void)
 
 	printf("\033[32m\nRunning Test: 'ft_read'\n\033[0m");
 	test_ft_read();
+
+	printf("\033[32m\nRunning Test: 'ft_strdup'\n\033[0m");
+	test_ft_strdup();
 	return UNITY_END();
 }

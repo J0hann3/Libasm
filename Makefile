@@ -3,14 +3,15 @@ AS = nasm
 ASFLAGS = -felf64 -g -s -i srcs
 
 CC = cc
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Wextra
 
 SRCS_DIR = srcs/
 SRCS_LIST = ft_strlen.s\
 			ft_strcpy.s\
 			ft_strcmp.s\
 			ft_write.s\
-			ft_read.s
+			ft_read.s\
+			ft_strdup.s
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
@@ -29,7 +30,8 @@ TESTS_LIST = Test_main.c\
 			Test_ft_strcpy.c\
 			Test_ft_strcmp.c\
 			Test_ft_write.c\
-			Test_ft_read.c
+			Test_ft_read.c\
+			Test_ft_strdup.c
 
 TESTS = $(addprefix $(TESTS_DIR), $(TESTS_LIST))
 TEST_UNIT_SRC = ./Unity/src/unity.c
