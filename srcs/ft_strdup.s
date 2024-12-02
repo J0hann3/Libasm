@@ -5,7 +5,6 @@ global ft_strdup
 extern ft_strlen
 extern ft_strcpy
 extern malloc
-extern errno
 
 ; rdi string to duplicate
 ft_strdup:
