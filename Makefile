@@ -3,7 +3,7 @@ AS = nasm
 ASFLAGS = -felf64 -g -s -i srcs
 
 CC = cc
-CFLAGS = -g -Wall -Wextra
+CFLAGS = -g -Wall -Wextra -Werror
 
 SRCS_DIR = srcs/
 SRCS_LIST = ft_strlen.s\
@@ -11,7 +11,8 @@ SRCS_LIST = ft_strlen.s\
 			ft_strcmp.s\
 			ft_write.s\
 			ft_read.s\
-			ft_strdup.s
+			ft_strdup.s\
+			ft_atoi_base.s
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
@@ -31,7 +32,8 @@ TESTS_LIST = Test_main.c\
 			Test_ft_strcmp.c\
 			Test_ft_write.c\
 			Test_ft_read.c\
-			Test_ft_strdup.c
+			Test_ft_strdup.c\
+			Test_ft_atoi_base.c
 
 TESTS = $(addprefix $(TESTS_DIR), $(TESTS_LIST))
 TEST_UNIT_SRC = ./Unity/src/unity.c
@@ -39,6 +41,8 @@ TEST_UNIT_INC = -I./Unity/src/
 TEST_NAME = unitTest
 
 all:	$(NAME)
+
+bonus:	$(NAME)
 
 $(NAME): $(OBJS_DIR) $(OBJS)
 	ar rcs $(NAME) $(OBJS)

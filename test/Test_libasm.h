@@ -9,5 +9,6 @@ void test_ft_strcmp(void);
 void test_ft_write(void);
 void test_ft_read(void);
 void test_ft_strdup(void);
+void test_ft_atoi_base(void);
 
 #endif

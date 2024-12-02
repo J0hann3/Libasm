@@ -7,6 +7,7 @@ void tearDown(){}
 int main(void)
 {
 	UNITY_BEGIN();
+	printf("\033[32mMandatory part:\n\033[0m");
 	printf("\033[32m\nRunning Test: 'ft_strlen'\n\033[0m");
 	test_ft_strlen();
 
@@ -24,5 +25,10 @@ int main(void)
 
 	printf("\033[32m\nRunning Test: 'ft_strdup'\n\033[0m");
 	test_ft_strdup();
+
+	printf("\033[32m\nBonus part:\n\033[0m");
+
+	printf("\033[32m\nRunning Test: 'ft_atoi_base'\n\033[0m");
+	test_ft_atoi_base();
 	return UNITY_END();
 }
