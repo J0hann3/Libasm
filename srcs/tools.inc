@@ -5,5 +5,7 @@
 	SYS_WRITE equ 1
 
 	%define errno __errno_location
+	%define True 1
+	%define False 0
 	
 %endif
