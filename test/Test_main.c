@@ -33,5 +33,8 @@ int main(void)
 
 	printf("\033[32m\nRunning Test: 'ft_list_push_front'\n\033[0m");
 	test_ft_list_push_front();
+
+	printf("\033[32m\nRunning Test: 'ft_list_size'\n\033[0m");
+	test_ft_list_size();
 	return UNITY_END();
 }

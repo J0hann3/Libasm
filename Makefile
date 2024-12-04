@@ -13,7 +13,8 @@ SRCS_LIST = ft_strlen.s\
 			ft_read.s\
 			ft_strdup.s\
 			ft_atoi_base.s\
-			ft_list_push_front.s
+			ft_list_push_front.s\
+			ft_list_size.s
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
@@ -35,7 +36,8 @@ TESTS_LIST = Test_main.c\
 			Test_ft_read.c\
 			Test_ft_strdup.c\
 			Test_ft_atoi_base.c\
-			Test_ft_list_push_front.c
+			Test_ft_list_push_front.c\
+			Test_ft_list_size.c
 
 TESTS = $(addprefix $(TESTS_DIR), $(TESTS_LIST))
 TEST_UNIT_SRC = ./Unity/src/unity.c

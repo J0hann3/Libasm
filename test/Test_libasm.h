@@ -19,6 +19,7 @@ void test_ft_strdup(void);
 
 // Bonus part
 void test_ft_atoi_base(void);
-void test_ft_list_push_front();
+void test_ft_list_push_front(void);
+void test_ft_list_size(void);
 
 #endif
