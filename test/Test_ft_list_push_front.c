@@ -11,7 +11,6 @@ t_list *verify_list_push_front_behavior(t_list *begin_list, void *data)
 
 	ft_list_push_front(&begin_list, data);
 
-	printf("%p\n", begin_list);
 	TEST_ASSERT_NOT_NULL_MESSAGE(begin_list, "Failed to allocate some memory");
 	TEST_ASSERT_EQUAL_PTR(data, begin_list->data);
 	TEST_ASSERT_EQUAL_PTR(old_begin_list, begin_list->next);
