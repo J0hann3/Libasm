@@ -16,8 +16,8 @@ void verify_list_sort_behavior(t_list *list, int (*cmp)(), void **list_sort)
 	{
 		t_list *tmp = list;
 		TEST_ASSERT_EQUAL_PTR(list_sort[i], tmp->data);
-		free(tmp);
 		list = list->next;
+		free(tmp);
 		i++;
 	}
 }
@@ -40,23 +40,25 @@ void test_ft_list_sort_two_elements()
 {
 	{
 		t_list *list = NULL;
-		char *data[2] = {"hey", "coucou"};
-		ft_list_push_front(&list, data[0]);
+		char *data[2] = {"coucou", "hey"};
+		// list = coucou, hey
 		ft_list_push_front(&list, data[1]);
+		ft_list_push_front(&list, data[0]);
 
 		verify_list_sort_behavior(list, &strcmp, (void *)data);
 	}
 	{
 		t_list *list = NULL;
 		char *data[2] = {"coucou", "coucou"};
-		ft_list_push_front(&list, data[0]);
 		ft_list_push_front(&list, data[1]);
+		ft_list_push_front(&list, data[0]);
 		
 		verify_list_sort_behavior(list, &strcmp, (void *)data);
 	}
 	{
 		t_list *list = NULL;
 		char *data[2] = {"coucou", "hey"};
+		// list = hey, coucou
 		ft_list_push_front(&list, data[0]);
 		ft_list_push_front(&list, data[1]);
 		
@@ -68,19 +70,19 @@ void test_ft_list_sort_multiple_elements()
 {
 	{
 		t_list *list = NULL;
-		char *data[6] = {"hey", "coucou", "12345", "hello", "a", "54gd21"};
-		ft_list_push_front(&list, data[0]);
-		ft_list_push_front(&list, data[1]);
-		ft_list_push_front(&list, data[2]);
-		ft_list_push_front(&list, data[3]);
-		ft_list_push_front(&list, data[4]);
+		char *data[6] = {"12345", "54gd21", "a", "coucou", "hello","hey"};
 		ft_list_push_front(&list, data[5]);
+		ft_list_push_front(&list, data[4]);
+		ft_list_push_front(&list, data[3]);
+		ft_list_push_front(&list, data[2]);
+		ft_list_push_front(&list, data[1]);
+		ft_list_push_front(&list, data[0]);
 
 		verify_list_sort_behavior(list, &strcmp, (void *)data);
 	}
 	{
 		t_list *list = NULL;
-		char *data[6] = {"12345", "54gd21", "a", "coucou", "hello", "hey"};
+		char *data[6] = {"12345", "54gd21", "a", "coucou", "hello","hey"};
 		ft_list_push_front(&list, data[0]);
 		ft_list_push_front(&list, data[1]);
 		ft_list_push_front(&list, data[2]);
@@ -92,13 +94,13 @@ void test_ft_list_sort_multiple_elements()
 	}
 	{
 		t_list *list = NULL;
-		char *data[6] = {"12345", "12345", "a", "coucou", "hello", "12345"};
-		ft_list_push_front(&list, data[0]);
-		ft_list_push_front(&list, data[1]);
-		ft_list_push_front(&list, data[2]);
+		char *data[6] = {"12345", "54gd21", "a", "coucou", "hello","hey"};
 		ft_list_push_front(&list, data[3]);
-		ft_list_push_front(&list, data[4]);
+		ft_list_push_front(&list, data[1]);
 		ft_list_push_front(&list, data[5]);
+		ft_list_push_front(&list, data[2]);
+		ft_list_push_front(&list, data[4]);
+		ft_list_push_front(&list, data[0]);
 		
 		verify_list_sort_behavior(list, &strcmp, (void *)data);
 	}
