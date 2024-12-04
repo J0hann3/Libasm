@@ -30,5 +30,8 @@ int main(void)
 
 	printf("\033[32m\nRunning Test: 'ft_atoi_base'\n\033[0m");
 	test_ft_atoi_base();
+
+	printf("\033[32m\nRunning Test: 'ft_list_push_front'\n\033[0m");
+	test_ft_list_push_front();
 	return UNITY_END();
 }
