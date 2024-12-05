@@ -39,5 +39,8 @@ int main(void)
 
 	printf("\033[32m\nRunning Test: 'ft_list_sort'\n\033[0m");
 	test_ft_list_sort();
+
+	printf("\033[32m\nRunning Test: 'ft_list_remove_if'\n\033[0m");
+	test_ft_list_remove_if();
 	return UNITY_END();
 }

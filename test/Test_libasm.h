@@ -22,5 +22,6 @@ void test_ft_atoi_base(void);
 void test_ft_list_push_front(void);
 void test_ft_list_size(void);
 void test_ft_list_sort(void);
+void test_ft_list_remove_if(void);
 
 #endif
