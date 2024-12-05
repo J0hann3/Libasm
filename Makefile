@@ -43,7 +43,10 @@ TESTS_LIST = Test_main.c\
 			Test_ft_list_sort.c\
 			Test_ft_list_remove_if.c
 
-TESTS = $(addprefix $(TESTS_DIR), $(TESTS_LIST))
+TEST_OBJS_DIR = test/objs/
+TEST_OBJS_LIST = $(TESTS_LIST:.c=.o)
+TEST_OBJS = $(addprefix $(TEST_OBJS_DIR), $(TEST_OBJS_LIST))
+
 TEST_UNIT_SRC = ./Unity/src/unity.c
 TEST_UNIT_INC = -I./Unity/src/
 TEST_NAME = unitTest
@@ -71,16 +74,24 @@ $(UNIT_TEST):
 	fi
 	@echo "~ DONE ~\n"
 
-test: $(NAME) $(UNIT_TEST)
-	$(CC) $(CFLAGS) -DUNITY_INCLUDE_EXEC_TIME -DUNITY_OUTPUT_COLOR $(TESTS) $(TEST_UNIT_SRC) $(TEST_UNIT_INC) -L. -lasm -o $(TEST_NAME);
+$(TEST_NAME): $(NAME) $(UNIT_TEST) $(TEST_OBJS_DIR) $(TEST_OBJS)
+	$(CC) $(CFLAGS) -DUNITY_INCLUDE_EXEC_TIME -DUNITY_OUTPUT_COLOR $(TEST_OBJS) $(TEST_UNIT_SRC) $(TEST_UNIT_INC) -L. -lasm -o $(TEST_NAME);
+
+test: $(TEST_NAME)
 	./$(TEST_NAME)
 
-valgrind_test: $(NAME) $(UNIT_TEST)
-	$(CC) $(CFLAGS) -DUNITY_INCLUDE_EXEC_TIME -DUNITY_OUTPUT_COLOR $(TESTS) $(TEST_UNIT_SRC) $(TEST_UNIT_INC) -L. -lasm -o $(TEST_NAME);
+valgrind_test: $(TEST_NAME)
 	valgrind ./$(TEST_NAME)
+
+$(TEST_OBJS_DIR):
+	mkdir -p $(TEST_OBJS_DIR)
+
+$(TEST_OBJS_DIR)%.o: $(TESTS_DIR)%.c Makefile test/Test_libasm.h
+	$(CC) $(CFLAGS) -c $< -o $@ $(TEST_UNIT_INC) 
 
 clean:
 	rm -rf $(OBJS_DIR)
+	rm -rf $(TEST_OBJS_DIR)
 
 clean_unittest:
 	rm -rf $(UNIT_TEST)
@@ -91,4 +102,4 @@ fclean: clean clean_unittest
 
 re: fclean all
 
-.PHONY: all clean fclean re test
+.PHONY: all bonus clean fclean re test valgrind_test clean_unittest
