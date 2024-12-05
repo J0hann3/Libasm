@@ -11,30 +11,30 @@ ft_list_sort:
 	push r13
 	push r14
 	push r15
-	mov r15, [rdi]					; save function pointer
-	mov r12, rsi					; save function pointer
+	mov r15, [rdi]						; save t_list *begin_list
+	mov r12, rsi						; save function pointer
 
 	mov rdi, QWORD [rdi]
 	call ft_list_size
-	mov r13, rax					; get size list in r13
+	mov r13, rax						; get size list of list in in r13
 
-	mov r14, 0						; set counter to 0
+	mov r14, 0							; set counter to 0
 	sort_loop:
-		cmp r14, r13
+		cmp r14, r13					; loop r13 time over the list
 		jge end_loop
-		mov rbx, r15
+		mov rbx, r15					; get begin_list in rbx
 		swap_element_loop:
-			test rbx, rbx				; check pointer null
+			test rbx, rbx				; check if pointer is null
 			je end_swap_element_loop
 
 			mov rdi, QWORD [rbx]
-			mov rsi, QWORD [rbx + 8]
-			test rsi, rsi				; check next null
+			mov rsi, QWORD [rbx + 8]	; get next element
+			test rsi, rsi				; check pointer next is null
 			je end_swap_element_loop
 			mov rsi, QWORD [rsi]
 			call r12					; call compare function
 
-			cmp eax, 0
+			cmp eax, 0					; cmp return value to see if positive or negative
 			js end_swap_value
 			swap_element:
 			mov rsi, [rbx]
@@ -43,7 +43,7 @@ ft_list_sort:
 			mov [rbx], rsi
 			end_swap_value:
 
-			mov rbx, QWORD [rbx + 8]
+			mov rbx, QWORD [rbx + 8]	; go to the next element of the list
 			jmp swap_element_loop
 		end_swap_element_loop:
 		inc r14
