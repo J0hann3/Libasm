@@ -34,6 +34,7 @@ ft_atoi_base:
 	push r12
 	push r13
 	push r14
+	sub rsp, 8
 	mov r12, rdi						; number to convert
 	mov rbx, rsi						; base for conversion
 	mov r14, rsi						; save base for conversion
@@ -75,6 +76,7 @@ ft_atoi_base:
 			jmp parse_base_loop
 
 	error_base:							; return parsing error
+		add rsp, 8
 		pop r14
 		pop r13
 		pop r12
@@ -137,6 +139,7 @@ ft_atoi_base:
 		jz even_number_of_sign
 		neg rax
 		even_number_of_sign:
+		add rsp, 8
 		pop r14
 		pop r13
 		pop r12
