@@ -7,13 +7,15 @@
 
 > The aim of this project is to get familiar with assembly language.
 
+Use for the first time assembly languages
+
 [Subject Libasm Project 42](libasm.pdf)
 
 
 ## Features
-- **Description**: 
-- **Feature**: 
-- **How to Use**: 
+- **Description**: Learn to manipulate assembly language, be step closer to the machine.
+- **Feature**: Recreate basic function in assembly using x86_64 with Intel syntax.
+- **How to Use**: Use the Library `Libasm.a` to have access to all the functions.
 
 ## Setup
 
@@ -24,16 +26,26 @@ cd Libasm
 ```
 ## Usage
 
+- Compile the library with the following command:
+```bash
+make
+```
+- Add the prototype of the called functions in the file 
+- Compile your file with the libraby
+```bash
+gcc main.c -L. -lasm
+```
+- Run Unit Test to check the functionement of each function
+```bash
+make test
+```
+
 ## New Notion
-- Registers => 64 bits
-	- `rip`(Instruction pointer) => next address to be executed in the control flow
-- Stack (Last In First Out):
-	- `rsp`(Stack Pointer) => top address of the stack
-	- `rbp`(Stack Base Pointer) => bottom address of the stack
 
 ### CPU
-- Register => 64 bits
-- ALU (Arithmetic Logic Unit) => +/-/*//
+- Registers: can have 8, 16, 32 or 64 bits.
+	- This project will use 64 bits registers. 
+- ALU (Arithmetic Logic Unit) => handle arithmetic operation like `*`, `-`, `/`, or `+`.
 - Status flags:
 	- Carry(CF)
 	- Parity(PF)
@@ -54,9 +66,6 @@ cd Libasm
 	- (ID)
 - Program Counter(PC)
 - Input/Output
-
-### RAM
-- Program Memory
 
 ### Assembly languages
 - Opcode -> action to do
@@ -82,14 +91,15 @@ cd Libasm
 	- .data => define data before compilation
 	- .bss => allocate data
 	- .text => code
+   	- .rodata => read only data
 - label
 	- variables
-	- `_start` => mandatory to run the code
-- global
-- `rax` return value from functions
+	- `_start` => mandatory to run a program
+- global => expand the scope at the outside of the file
 - Calling convention
-	- caller => person that call the function
-	- callee => function being called
+	- caller-owned => person that call the function
+	- callee-owned => function being called
+   	- the stack should be align on 16 bits before calling another function
 - Instruction suffix:
 	- `b` -> 1 bytes
 	- `w` -> 2 bytes
@@ -99,6 +109,11 @@ cd Libasm
 	- `10101B`
 - Hexadecimal
 	- `F82EH`
+- Registers
+	- `rip`(Instruction pointer) => next address to be executed in the control flow
+- Stack (Last In First Out):
+	- `rsp`(Stack Pointer) => top address of the stack
+	- `rbp`(Stack Base Pointer) => bottom address of the stack
 
 ### Registers
 
@@ -138,13 +153,6 @@ All registers, except `rcx` and `r11` (and the return value, `rax`), are preserv
 `mov qword ptr[rax],rbx`
 
 `call qword ptr[rbx+rsi*4-0xe8]`
-
-
-### Unit test
-- TDD:
-	- write code only to fix a test that failed
-	- stop writing unit test when one failed
-	- stop writing code when unit test pass
 
 
 
