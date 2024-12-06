@@ -13,9 +13,9 @@ Use for the first time assembly languages
 
 
 ## Features
-- **Description**: Learn to manipulate assembly language, be step closer to the machine.
-- **Feature**: Recreate basic function in assembly using x86_64 with Intel syntax.
-- **How to Use**: Use the Library `Libasm.a` to have access to all the functions.
+- **Description**: Learn to manipulate assembly language and get one step closer to understanding how computers work at a low level.
+- **Feature**: Recreate basic functions in assembly using the x86_64 architecture with Intel syntax.
+- **How to Use**: Use the `Libasm.a` library to access all the functions.
 
 ## Setup
 
@@ -30,92 +30,82 @@ cd Libasm
 ```bash
 make
 ```
-- Add the prototype of the called functions in the file 
-- Compile your file with the libraby
+- Add the function prototypes in your source file.
+- Compile your file with the libraby:
 ```bash
 gcc main.c -L. -lasm
 ```
-- Run Unit Test to check the functionement of each function
+- Run Unit Tests to verify the functionality of each function:
 ```bash
 make test
 ```
 
 ## New Notion
 
-### CPU
-- Registers: can have 8, 16, 32 or 64 bits.
+### CPU Architecture
+- **Registers**: can have 8, 16, 32 or 64 bits.
 	- This project will use 64 bits registers. 
-- ALU (Arithmetic Logic Unit) => handle arithmetic operation like `*`, `-`, `/`, or `+`.
-- Status flags:
-	- Carry(CF)
-	- Parity(PF)
-	- Adjust(AF)
-	- Zero(ZF)
-	- Unsigned result(SF)
-	- (TF)
-	- (IF)
-	- (DF)
-	- Overflow(OF)
-	- (IOPL)
-	- (NT)
-	- (RF)
-	- (VM)
-	- (AC)
-	- (VIF)
-	- (VIP)
-	- (ID)
-- Program Counter(PC)
-- Input/Output
+- **ALU**(Arithmetic Logic Unit): Handles arithmetic operations like `*`, `-`, `/`, and `+`.
+- **Status flags**:
+	-Carry Flag (CF)
+	- Parity Flag (PF)
+	- Adjust Flag (AF)
+	- Zero Flag (ZF)
+	- Sign Flag (SF)
+	- Overflow Flag (OF)
+	- Trap Flag (TF)
+	- Interrupt Flag (IF)
+	- Direction Flag (DF)
+	- and more...
+- **Program Counter(PC)**: Points to the next instruction to execute.
+- **Input/Output(I/O)** operations.
 
-### Assembly languages
-- Opcode -> action to do
-- Operand -> argument
-	- source: register, memory, value, implicit
-	- destination: register, memory
-	- ATTENTION: source and destination can't be memory at the same time
-- Addressing mode:
-	- Register Addressing
-		- `mov ax, bx`, moves contents of register bx into ax
-	- Immediate
-		- `mov ax, 1`, moves value of 1 into register ax
-		- `mov ax, 010Ch`, moves value of 0x010C into register ax
-	- Direct
-		- `mov ax, [my_var]`, copy my_var content into ax
-		- `mov al, [byte_table + 2]`
-		- `mov al, byte_table[2]`
-	- Indirect
-		- The registers used for indirect addressing are BX, BP, SI, DI
-		- `mov ax, [di]`
+### Assembly Language Basics
+- **Opcode**: Represents the action to be performed (e.g., `mov`, `add`, `sub`).
+- **Operand**: The argument of the instruction, which can be a source or destination.
+	- **Source**: Can be a register, memory, constant, or implicit.
+	- **Destination**: Can be a register or memory.
+	- **Note**: Both source and destination cannot be memory at the same time.
+- **Addressing Modes**:
+	- **Register Addressing**:
+	Example: `mov ax, bx` — moves the content of `bx` into `ax`.
+	- **Immediate Addressing**:
+	Example: `mov ax, 1` — moves the value `1` into `ax`.
+	Example: `mov ax, 0x010C` — moves the value `0x010C` into `ax`.
+	- **Direct Addressing**:
+	Example: `mov ax, [my_var]` — copies the content of `my_var` into `ax`.
+	- **Indirect Addressing**:
+	Registers like `BX`, `BP`, `SI`, and `DI` are used in indirect addressing.
+	Example: `mov ax, [di]` — loads the value from the address in `di` into `ax`.
 
-- section
-	- .data => define data before compilation
-	- .bss => allocate data
-	- .text => code
-   	- .rodata => read only data
-- label
-	- variables
-	- `_start` => mandatory to run a program
-- global => expand the scope at the outside of the file
-- Calling convention
-	- caller-owned => person that call the function
-	- callee-owned => function being called
-   	- the stack should be align on 16 bits before calling another function
-- Instruction suffix:
-	- `b` -> 1 bytes
-	- `w` -> 2 bytes
-	- `l` -> 4 bytes
-	- `q` -> 8 bytes
-- Binary
-	- `10101B`
-- Hexadecimal
-	- `F82EH`
-- Registers
-	- `rip`(Instruction pointer) => next address to be executed in the control flow
-- Stack (Last In First Out):
-	- `rsp`(Stack Pointer) => top address of the stack
-	- `rbp`(Stack Base Pointer) => bottom address of the stack
+- **Sections**:
+   - `.data` — Define data before compilation.
+  	- `.bss` — Allocate uninitialized data.
+    - `.text` — Code section.
+    - `.rodata` — Read-only data.
+- **Labels**: Used for variables and code references.
+  - `_start`: Mandatory entry point for an executable program.
+- **Global**: Expands the scope of variables/functions outside the file.
 
-### Registers
+- **Calling Convention**:
+
+    - **Caller-owned**: The function calling another function.
+	- **Callee-owned**: The function being called.
+    - The stack must be aligned to 16 bytes before calling a function.
+- **Instruction suffix**:
+	- `b` -> 1 byte.
+	- `w` -> 2 bytes.
+	- `l` -> 4 bytes.
+	- `q` -> 8 bytes.
+- **Data Representation**:
+    - Binary: `10101B`
+    - Hexadecimal: `F82EH`
+- **Registers**
+	- `rip`(Instruction pointer) — Points to the next instruction.
+	- `rsp`(Stack Pointer) — Top address of the stack.
+	- `rbp`(Stack Base Pointer) — Bottom address of the stack.
+
+### Registers Overview
 
 | 64-Bits | 32-Bits | 16-Bits | 8-Bits | Calling Convention |  Main Purpose | Purpose |
 | --------| --------| --------| -------| -------------------| --------------| --------|
@@ -138,21 +128,16 @@ make test
 | `rip` | | | | | Instruction Pointer |
 | `eflags` | | | | | Status/condition code bits |
 
-### Syscall
+### Syscalls
 
-| system call number | 1st parameter | 2nd parameter | 3rd parameter | 4th parameter | 5th parameter | 6th parameter | result |
+| System Call Number | 1st parameter | 2nd parameter | 3rd parameter | 4th parameter | 5th parameter | 6th parameter | result |
 | ------------------|----------------|----------------|---------------|-------------|---------------|-------|-------------|
 | `rax` | `rdi` | `rsi` | `rdx` | `r10` | `r8` | `r9` | `rax`|
 
-All registers, except `rcx` and `r11` (and the return value, `rax`), are preserved during the system call with syscall. 
+All registers, except `rcx` and `r11` (and the return value, `rax`), are preserved during a system call. 
 
 ### Intel syntax
-
-`mov destination, source`
-
-`mov qword ptr[rax],rbx`
-
-`call qword ptr[rbx+rsi*4-0xe8]`
-
-
-
+Example instructions in Intel syntax:
+- `mov destination, source`
+- `mov qword ptr[rax],rbx`
+- `call qword ptr[rbx+rsi*4-0xe8]`
